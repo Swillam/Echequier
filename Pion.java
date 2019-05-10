@@ -8,6 +8,13 @@ public class Pion extends Piece {
 
     @objid ("b1278758-735c-4213-a867-379170afc33d")
     public void bouger() {
+         if (verificationCoup(x,y)) {
+            this.setPosition(x,y) // Si la vérification est correcte, le pion va bouger
+        }
+    }
+    
+    public boolean verificationCoup(int x, int y) {
+        return True;
     }
 
 }
