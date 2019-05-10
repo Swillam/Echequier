@@ -1,0 +1,24 @@
+Reine max norme : 
+Max[0] = Nord, 
+Max[1] = Nord-Est,
+Max[2] = Est,
+Max[3] = Sud-Est,
+Max[4] = Sud,
+Max[5] = Sud-Ouest,
+Max[6] = Ouest,
+Max[7] = Nord-Ouest.
+
+Tour max norme :
+Max[0] = Nord, 
+Max[1] = Est,
+Max[2] = Sud,
+Max[3] = Ouest.
+
+Fou max norme :
+Max[0] = Nord-Est, 
+Max[1] = Sud-Est,
+Max[2] = Sud-Ouest,
+Max[3] = Nord-Ouest.
+
+Pion max norme :
+Max[0] = Nord (verifier si quelqu'un devant lui pour faire son deplacement de deux cases).
