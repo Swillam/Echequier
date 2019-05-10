@@ -6,10 +6,12 @@ public class Piece {
     private String Couleur;
 
     @objid ("0d81adf4-0776-4729-8b22-e0b03cbd411b")
-    private int X;
+	protected int X;
 
     @objid ("60450595-40cf-4ccb-964b-622279a0effa")
-    private int Y;
+	protected int Y;
+
+    protected Piece[] maxDeplacement;
 
     @objid ("674cb1a3-c51a-47c0-895e-6a2d2810309f")
     public void setPosition(int x, int y) {
@@ -39,6 +41,10 @@ public class Piece {
     void setY(int value) {
         // Automatically generated method. Please delete this comment before entering specific code.
         this.Y = value;
+    }
+    void setCouleur(String value)
+    {
+        this.Couleur = value;
     }
 
 }

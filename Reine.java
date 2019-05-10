@@ -6,14 +6,21 @@ public class Reine extends Piece {
     
     @objid ("13cfb459-74e1-4faa-b3d3-8d2bcf61c180")
     
-    public void bouger() {
-         if (verificationCoup(x,y)) {
-            this.setPosition(x,y) // Si la vérification est correcte, le pion va bouger
+    public void bouger(int x, int y) {
+        if (verificationCoup(x,y)) 
+        {
+            this.setPosition(x,y); // Si la vérification est correcte, le pion va bouger
         }
     }
     
-    public boolean verificationCoup(int x, int y) {
+    public boolean verificationCoup(int x, int y) 
+    {
         return True;
+    }
+
+    public void refreshMax()
+    {
+        
     }
 
 }
