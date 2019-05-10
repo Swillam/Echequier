@@ -12,7 +12,9 @@ public class Piece {
     private int Y;
 
     @objid ("674cb1a3-c51a-47c0-895e-6a2d2810309f")
-    public void setPostion(int x, String y) {
+    public void setPosition(int x, int y) {
+        setX(x);
+        ŝetY(y);
     }
 
     @objid ("1217b07f-23f8-401a-949a-da4d25d0d11b")
