@@ -7,7 +7,7 @@ public class Fou extends Piece {
     @objid ("30e4f7eb-f2bd-4b5a-9252-c0d4f17f2470")
     
     public void bouger() {
-        if verificationCoup(x,y) {
+        if (verificationCoup(x,y)) {
             this.setPosition(x,y) // Si la vérification est correcte, le pion va bouger
         }
     }
