@@ -10,7 +10,7 @@ public class Piece
 
     public void setPosition(int x, int y) {
         setX(x);
-        ŝetY(y);
+        setY(y);
     }
 
     public int getX() {
