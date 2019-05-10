@@ -1,10 +1,11 @@
 public class Tour extends Piece {
 
-    public void bouger(int x, int y) 
+    public void bouger(int x, int y, Echequier e) 
     {
         if (verificationCoup(x,y)) 
         {
             this.setPosition(x,y); // Si la vérification est correcte, le pion va bouger
+            this.refreshMax(e);
         }
     }
     
@@ -58,6 +59,7 @@ public class Tour extends Piece {
            iColonne--;
        }
 
+       // Ouest
        pieceNonPresente = true;
        while (pieceNonPresente && iLigne<-1) 
        {
