@@ -1,5 +1,11 @@
-public class Fou extends Piece {
-    
+public class Fou extends Piece 
+{
+    public Fou(int x, int y, String couleur, Echiquier e)
+    {
+        super(x,y,couleur,e);
+        maxDeplacement = new Piece[4];
+        this.refreshMax();
+    }
     
     public void bouger(int x, int y) 
     {
@@ -13,5 +19,8 @@ public class Fou extends Piece {
     {
         return true;
     }
+
+    public void refreshMax()
+    {}
 
 }

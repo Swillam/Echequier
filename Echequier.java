@@ -1,4 +1,5 @@
-public class Echequier {
+public class Echiquier 
+{
     private Piece[][] Case = new Piece[8][8];
 
     public void getPosition() {

@@ -1,5 +1,12 @@
-public class Reine extends Piece {
-    
+public class Reine extends Piece 
+{
+
+    public Reine(int x, int y, String couleur, Echiquier e)
+    {
+        super(x,y,couleur,e);
+        maxDeplacement = new Piece[4];
+        this.refreshMax();
+    }
     
     public void bouger(int x, int y) 
     {

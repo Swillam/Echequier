@@ -1,6 +1,6 @@
 public class Piece 
 {
-    private String Couleur;
+    protected String Couleur;
 
 	protected int X;
 
@@ -8,7 +8,17 @@ public class Piece
 
     protected Piece[] maxDeplacement;
 
-    public void setPosition(int x, int y) {
+    protected Echiquier echiquierCourant;
+
+    public Piece(int x, int y, String couleur, Echiquier e) 
+    {
+        this.X = x;
+        this.Y = y;
+        this.Couleur = couleur;
+        this.echiquierCourant = e;
+	}
+
+	public void setPosition(int x, int y) {
         setX(x);
         setY(y);
     }
