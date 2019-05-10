@@ -1,5 +1,7 @@
 public class Fou extends Piece 
 {
+    private Piece[] maxDeplacement;
+
     public Fou(int x, int y, String couleur, Echiquier e)
     {
         super(x,y,couleur,e);

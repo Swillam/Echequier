@@ -6,8 +6,6 @@ public class Piece
 
 	protected int Y;
 
-    protected Piece[] maxDeplacement;
-
     protected Echiquier echiquierCourant;
 
     public Piece(int x, int y, String couleur, Echiquier e) 

@@ -4,7 +4,6 @@ public class Roi extends Piece
     public Roi(int x, int y, String couleur, Echiquier e)
     {
         super(x,y,couleur,e);
-        maxDeplacement = new Piece[4];
         this.refreshMax();
     }
     

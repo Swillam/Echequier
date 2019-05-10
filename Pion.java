@@ -1,9 +1,11 @@
 public class Pion extends Piece 
 {
+    private Piece[] maxDeplacement;
+
     public Pion(int x, int y, String couleur, Echiquier e)
     {
         super(x,y,couleur,e);
-        maxDeplacement = new Piece[4];
+        maxDeplacement = new Piece[1];
         this.refreshMax();
     }
 

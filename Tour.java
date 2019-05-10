@@ -1,5 +1,7 @@
 public class Tour extends Piece {
 
+    private Piece[] maxDeplacement;
+
     public Tour(int x, int y, String couleur, Echiquier e)
     {
         super(x,y,couleur,e);
@@ -23,60 +25,60 @@ public class Tour extends Piece {
     public void refreshMax()
     {
         boolean pieceNonPresente = true;
-        int iColonne = this.Y;
-        int iLigne = this.X;
-        // Nord
-       while (pieceNonPresente && iColonne<8) 
-       {
-           if(echiquierCourant.getCase(this.X, iColonne) != null)
-           {
-                pieceNonPresente = false;
-                this.maxDeplacement[0] = echiquierCourant.getCase(this.X, iColonne);
-           }
-           if(iColonne == 7 && pieceNonPresente) this.maxDeplacement[0] = null; // si pas de piece trouver
-           iColonne++;
-       }
+        int iColonne = this.X;
+        int iLigne = this.Y;
 
-       // Est
-       pieceNonPresente = true;
+        // Nord
        while (pieceNonPresente && iLigne<8) 
        {
            if(echiquierCourant.getCase(this.X, iLigne) != null)
            {
                 pieceNonPresente = false;
-                this.maxDeplacement[1] = echiquierCourant.getCase(this.X, iLigne);
+                this.maxDeplacement[0] = echiquierCourant.getCase(this.X, iLigne);
            }
-           if(iLigne == 7 && pieceNonPresente) this.maxDeplacement[1] = null; // si pas de piece trouver
+           if(iLigne == 7 && pieceNonPresente) this.maxDeplacement[0] = null; // si pas de piece trouver
            iLigne++;
        }
 
-        iColonne = this.Y;
-        iLigne = this.X;
+       // Est
+       pieceNonPresente = true;
+       while (pieceNonPresente && iColonne<8) 
+       {
+           if(echiquierCourant.getCase(iColonne, this.Y) != null)
+           {
+                pieceNonPresente = false;
+                this.maxDeplacement[1] = echiquierCourant.getCase(iColonne, this.Y);
+           }
+           if(iColonne == 7 && pieceNonPresente) this.maxDeplacement[1] = null; // si pas de piece trouver
+           iColonne++;
+       }
 
        // Sud
        pieceNonPresente = true;
-       while (pieceNonPresente && iColonne<-1) 
-       {
-           if(echiquierCourant.getCase(this.X, iColonne) != null)
-           {
-                pieceNonPresente = false;
-                this.maxDeplacement[2] = echiquierCourant.getCase(this.X, iColonne);
-           }
-           if(iColonne == 0 && pieceNonPresente) this.maxDeplacement[2] = null; // si pas de piece trouver
-           iColonne--;
-       }
-
-       // Ouest
-       pieceNonPresente = true;
+       iLigne = this.Y;
        while (pieceNonPresente && iLigne<-1) 
        {
            if(echiquierCourant.getCase(this.X, iLigne) != null)
            {
                 pieceNonPresente = false;
-                this.maxDeplacement[3] = echiquierCourant.getCase(this.X, iLigne);
+                this.maxDeplacement[2] = echiquierCourant.getCase(this.X, iLigne);
            }
-           if(iLigne == 0 && pieceNonPresente) this.maxDeplacement[3] = null; // si pas de piece trouver
+           if(iLigne == 0 && pieceNonPresente) this.maxDeplacement[2] = null; // si pas de piece trouver
            iLigne--;
+       }
+
+       // Ouest
+       iColonne = this.X;
+       pieceNonPresente = true;
+       while (pieceNonPresente && iColonne<-1) 
+       {
+           if(echiquierCourant.getCase(iColonne, this.Y) != null)
+           {
+                pieceNonPresente = false;
+                this.maxDeplacement[3] = echiquierCourant.getCase(iColonne, this.Y);
+           }
+           if(iColonne == 0 && pieceNonPresente) this.maxDeplacement[3] = null; // si pas de piece trouver
+           iColonne--;
        }
     }
 
