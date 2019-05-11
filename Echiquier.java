@@ -15,6 +15,13 @@ public class Echiquier
         pieceJouer = pJouer;
         pieceManger = pManger;
     }
+    
+    public void PromotionPion() {
+        if (pion.getPosition(8,y) or pion.getPosition(1,y) == True) {
+            this.pion = null;
+            Reine r = new Reine(x,y,couleur,e);
+        }   
+    }
 
     public Piece getCase(int x, int y) {
         // Automatically generated method. Please delete this comment before entering specific code.
