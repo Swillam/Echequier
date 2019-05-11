@@ -13,7 +13,7 @@ public class Reine extends Piece
     {
         if (verificationCoup(x,y)) 
         {
-            this.setPosition(x,y); // Si la vérification est correcte, le pion va bouger
+            this.setPosition(this,x,y); // Si la vérification est correcte, le pion va bouger
         }
     }
     
@@ -31,7 +31,7 @@ public class Reine extends Piece
         // Nord
        while (pieceNonPresente && iLigne<8) 
        {
-           if(echiquierCourant.getCase(this.X, iLigne) != null)
+           if(echiquierCourant.siPiecePresente(this.X, iLigne))
            {
                 pieceNonPresente = false;
                 this.maxDeplacement[0] = echiquierCourant.getCase(this.X, iLigne);
@@ -45,7 +45,7 @@ public class Reine extends Piece
        iLigne = this.Y;
        while (pieceNonPresente && iLigne<8) 
        {
-        if(echiquierCourant.getCase(iColonne, iLigne) != null)
+        if(echiquierCourant.siPiecePresente(iColonne, iLigne))
         {
              pieceNonPresente = false;
              this.maxDeplacement[1] = echiquierCourant.getCase(iColonne, iLigne);
@@ -60,7 +60,7 @@ public class Reine extends Piece
        iColonne = this.X;
        while (pieceNonPresente && iLigne<8) 
        {
-           if(echiquierCourant.getCase(iColonne, this.Y) != null)
+           if(echiquierCourant.siPiecePresente(iColonne, this.Y))
            {
                 pieceNonPresente = false;
                 this.maxDeplacement[2] = echiquierCourant.getCase(iColonne, this.Y);
@@ -75,7 +75,7 @@ public class Reine extends Piece
         pieceNonPresente = true;
         while (pieceNonPresente && iLigne<-1) 
        {
-        if(echiquierCourant.getCase(iColonne, iLigne) != null)
+        if(echiquierCourant.siPiecePresente(iColonne, iLigne))
         {
              pieceNonPresente = false;
              this.maxDeplacement[3] = echiquierCourant.getCase(iColonne, iLigne);
@@ -90,7 +90,7 @@ public class Reine extends Piece
        iLigne = this.Y;
        while (pieceNonPresente && iLigne<-1) 
        {
-           if(echiquierCourant.getCase(this.X, iLigne) != null)
+           if(echiquierCourant.siPiecePresente(this.X, iLigne))
            {
                 pieceNonPresente = false;
                 this.maxDeplacement[4] = echiquierCourant.getCase(this.X, iLigne);
@@ -105,7 +105,7 @@ public class Reine extends Piece
        pieceNonPresente = true;
        while (pieceNonPresente && iColonne<-1) 
       {
-       if(echiquierCourant.getCase(iColonne, iLigne) != null)
+       if(echiquierCourant.siPiecePresente(iColonne, iLigne))
        {
             pieceNonPresente = false;
             this.maxDeplacement[5] = echiquierCourant.getCase(iColonne, iLigne);
@@ -120,7 +120,7 @@ public class Reine extends Piece
        pieceNonPresente = true;
        while (pieceNonPresente && iColonne<-1) 
        {
-           if(echiquierCourant.getCase(iColonne, this.Y) != null)
+           if(echiquierCourant.siPiecePresente(iColonne, this.Y))
            {
                 pieceNonPresente = false;
                 this.maxDeplacement[6] = echiquierCourant.getCase(iColonne, this.Y);
@@ -135,7 +135,7 @@ public class Reine extends Piece
        pieceNonPresente = true;
        while (pieceNonPresente && iColonne<-1) 
       {
-       if(echiquierCourant.getCase(iColonne, iLigne) != null)
+       if(echiquierCourant.siPiecePresente(iColonne, iLigne))
        {
             pieceNonPresente = false;
             this.maxDeplacement[7] = echiquierCourant.getCase(this.X, iLigne);
