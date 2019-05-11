@@ -16,7 +16,9 @@ public class Piece
         this.echiquierCourant = e;
 	}
 
-	public void setPosition(int x, int y) {
+    public void setPosition(Piece p,int x, int y) 
+    {
+        echiquierCourant.setCase(p,x,y);
         setX(x);
         setY(y);
     }
