@@ -9,8 +9,12 @@ public class Pion extends Piece
         this.refreshMax();
     }
 
-    public void Promotion() 
-    {
+    public void Promotion() {
+        if (pion.getPosition(8,y) or pion.getPosition(1,y) == True) {
+            this.pion = null;
+            Reine r = new Reine(x,y,couleur,e);
+        }
+        
     }
 
     public void bouger(int x, int y) 
@@ -26,7 +30,23 @@ public class Pion extends Piece
         return true;
     }
 
-    public void refreshMax()
-    {}
+    public void refreshMax() {
+    
+    boolean pieceNonPresente = true;
+        int iColonne = this.X;
+        int iLigne = this.Y;
+
+        // Nord
+       while (pieceNonPresente && iLigne<1) {
+       
+           if(echiquierCourant.siPiecePresente(this.X, iLigne)) {
+                pieceNonPresente = false;
+                this.maxDeplacement[0] = echiquierCourant.getCase(this.X, iLigne);
+           }
+           
+           if(iLigne == 1 && pieceNonPresente) this.maxDeplacement[0] = null; // si pas de piece trouver
+           iLigne++;
+       }
+    }
 
 }
