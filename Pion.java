@@ -17,7 +17,8 @@ public class Pion extends Piece
     {
         if (verificationCoup(x,y)) 
         {
-            this.setPosition(x,y); // Si la vérification est correcte, le pion va bouger
+            this.setPosition(this,x,y); // Si la vérification est correcte, le pion va bouger
+            this.refreshMax();
         }
     }
     
