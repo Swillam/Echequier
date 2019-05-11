@@ -9,14 +9,6 @@ public class Pion extends Piece
         this.refreshMax();
     }
 
-    public void Promotion() {
-        if (pion.getPosition(8,y) or pion.getPosition(1,y) == True) {
-            this.pion = null;
-            Reine r = new Reine(x,y,couleur,e);
-        }
-        
-    }
-
     public void bouger(int x, int y) 
     {
         if (verificationCoup(x,y)) 
