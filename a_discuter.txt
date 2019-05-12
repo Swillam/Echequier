@@ -1,0 +1,5 @@
+ public void PromotionPion() {
+        if (pion.getPosition(8,y) or pion.getPosition(1,y) == True) {
+            this.pion = null;
+            Reine r = new Reine(x,y,couleur,e);
+        }   
