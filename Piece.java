@@ -1,6 +1,6 @@
 public class Piece 
 {
-    protected String Couleur;
+    protected String couleur;
 
 	protected int X;
 
@@ -12,7 +12,7 @@ public class Piece
     {
         this.X = x;
         this.Y = y;
-        this.Couleur = couleur;
+        this.couleur = couleur;
         this.echiquierCourant = e;
 	}
 
@@ -44,7 +44,7 @@ public class Piece
     }
     public String getCouleur()
     {
-        return this.Couleur;
+        return this.couleur;
     }
 
 }
