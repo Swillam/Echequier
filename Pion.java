@@ -40,16 +40,21 @@ public class Pion extends Piece
         boolean horsMapN = horsMapNBlanc;
         boolean horsMapE = this.X == 7;
         boolean horsMapO = this.X == 0;
-        int mouvementNord = this.Y + 1; // pour les blancs
+
+        // pour les blancs
+        int mouvementNord = this.Y + 1; 
         int mouvementEst = this.X+1;
         int mouvementOuest = this.X-1;
-        if (this.couleur == "Noir") //mouvement et hors map noir
+
+        //mouvement et hors map noir
+        if (this.couleur == "Noir") 
         {   
             horsMapN = horsMapNNoir;
             mouvementNord = this.Y-1; // pour les blancs
             mouvementEst = this.X-1;
             mouvementOuest = this.X+1;
         }
+        
         // Nord
        
         if(!(horsMapN))
