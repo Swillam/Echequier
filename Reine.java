@@ -1,11 +1,12 @@
 public class Reine extends Piece 
 {
-    private Piece[] maxDeplacement;
 
     public Reine(int x, int y, String couleur, Echiquier e)
     {
         super(x,y,couleur,e);
         maxDeplacement = new Piece[8];
+        if(couleur == "Blanc") forme = "\u2655";
+        else forme = "\u265B";
         this.refreshMax();
     }
     

@@ -1,11 +1,11 @@
 public class Tour extends Piece {
 
-    private Piece[] maxDeplacement;
-
     public Tour(int x, int y, String couleur, Echiquier e)
     {
         super(x,y,couleur,e);
         maxDeplacement = new Piece[4];
+        if(couleur == "Blanc") forme = "\u2656";
+        else forme = "\u265C";
         this.refreshMax();
     }
 

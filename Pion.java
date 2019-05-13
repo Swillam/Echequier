@@ -1,12 +1,13 @@
 public class Pion extends Piece 
 {
-    private Piece[] maxDeplacement;
     private boolean promotion;
 
     public Pion(int x, int y, String couleur, Echiquier e)
     {
         super(x,y,couleur,e);
         maxDeplacement = new Piece[3];
+        if(couleur == "Blanc") forme = "\u2659";
+        else forme = "\u265F";
         this.refreshMax();
     }
 

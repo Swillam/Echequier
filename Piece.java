@@ -2,6 +2,10 @@ public class Piece
 {
     protected String couleur;
 
+    protected String forme;
+
+    protected Piece[] maxDeplacement;
+
 	protected int X;
 
 	protected int Y;

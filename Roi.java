@@ -4,6 +4,8 @@ public class Roi extends Piece
     public Roi(int x, int y, String couleur, Echiquier e)
     {
         super(x,y,couleur,e);
+        if(couleur == "Blanc") forme = "\u2654";
+        else forme = "\u265A";
     }
     
     public void bouger(int x, int y) 
