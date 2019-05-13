@@ -1,12 +1,35 @@
 public class Echiquier 
 {
-    private Piece[][] Case = new Piece[8][8];
+    private Piece[][] casePieces = new Piece[8][8];
     private Piece pieceJouer;
     private Piece pieceManger;
 
 
     public Echiquier()
     {
+        int x = 0;
+        int y = 0;
+        String couleur = "Blanc";
+        for (int i = 0; i < 2; i++) 
+        {
+            //tour, cavalier, fou, roi, reine, fou, cavalier, tour
+            casePieces[x][y] = new Tour(x, y, couleur, this);
+            casePieces[x+2][y] = new Fou(x+2, y, couleur, this);
+            casePieces[x+3][y] = new Roi(x+3, y, couleur, this);
+            casePieces[x+4][y] = new Reine(x+4, y, couleur, this);
+            casePieces[x+5][y] = new Fou(x+5, y, couleur, this);
+            casePieces[x+6][y] = new Cavalier(x+6, y, couleur, this);
+            casePieces[x+7][y] = new Tour(x+7, y, couleur, this);
+            y++;
+            if (i == 1) y--; // pour les noir
+            //rangée de pion
+            for (int i1 = 0; i < 7; i++) 
+            {
+                casePieces[i1][y] = new Pion(i, y, couleur, this);
+            }
+            couleur = "Noir";
+            y = 7;
+            }
 
     }
 
@@ -41,18 +64,18 @@ public class Echiquier
 
     public Piece getCase(int x, int y) {
         // Automatically generated method. Please delete this comment before entering specific code.
-        return this.Case[x][y];
+        return this.casePieces[x][y];
     }
 
     public void setCase(Piece p, int x, int y) 
     {
-        if(siPiecePresente(x, y)) manger(p, this.Case[x][y]);
-        this.Case[x][y] = p;
+        if(siPiecePresente(x, y)) manger(p, this.casePieces[x][y]);
+        this.casePieces[x][y] = p;
     }
 
     public boolean siPiecePresente(int x, int y) 
     {
-        return this.Case[x][y] != null ;
+        return this.casePieces[x][y] != null ;
     }
 
     /**
