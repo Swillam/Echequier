@@ -51,4 +51,9 @@ public class Piece
         return this.couleur;
     }
 
+    public String toString()
+    {
+        return forme;
+    }
+
 }
