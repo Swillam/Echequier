@@ -1,24 +1,24 @@
 public class Reine extends Piece 
 {
 
-    public Reine(int x, int y, String couleur, Echiquier e)
+    public Reine(int ligne, int colonne, String couleur, Echiquier e)
     {
-        super(x,y,couleur,e);
+        super(ligne,colonne,couleur,e);
         maxDeplacement = new Piece[8];
         if(couleur == "Blanc") forme = "\u2655";
         else forme = "\u265B";
         this.refreshMax();
     }
     
-    public void bouger(int x, int y) 
+    public void bouger(int ligne, int colonne) 
     {
-        if (verificationCoup(x,y)) 
+        if (verificationCoup(ligne,colonne)) 
         {
-            this.setPosition(this,x,y); // Si la vérification est correcte, le pion va bouger
+            this.setPosition(this,ligne,colonne); // Si la vérification est correcte, le pion va bouger
         }
     }
     
-    public boolean verificationCoup(int x, int y) 
+    public boolean verificationCoup(int ligne, int colonne) 
     {
         return true;
     }
@@ -26,124 +26,124 @@ public class Reine extends Piece
     public void refreshMax()
     {
         boolean pieceNonPresente = true;
-        int iColonne = this.X;
-        int iLigne = this.Y;
+        int iLigne = this.ligne;
+        int iColonne = this.colonne;
 
         // Nord
-       while (pieceNonPresente && iLigne<8) 
+       while (pieceNonPresente && iColonne<8) 
        {
-           if(echiquierCourant.siPiecePresente(this.X, iLigne))
+           if(echiquierCourant.siPiecePresente(this.ligne, iColonne))
            {
                 pieceNonPresente = false;
-                this.maxDeplacement[0] = echiquierCourant.getCase(this.X, iLigne);
+                this.maxDeplacement[0] = echiquierCourant.getCase(this.ligne, iColonne);
            }
-           if(iLigne == 7 && pieceNonPresente) this.maxDeplacement[0] = null; // si pas de piece trouver
-           iLigne++;
+           if(iColonne == 7 && pieceNonPresente) this.maxDeplacement[0] = null; // si pas de piece trouver
+           iColonne++;
        }
 
        //Nord-Est
        pieceNonPresente = true;
-       iLigne = this.Y;
-       while (pieceNonPresente && iLigne<8) 
+       iColonne = this.colonne;
+       while (pieceNonPresente && iColonne<8) 
        {
-        if(echiquierCourant.siPiecePresente(iColonne, iLigne))
+        if(echiquierCourant.siPiecePresente(iLigne, iColonne))
         {
              pieceNonPresente = false;
-             this.maxDeplacement[1] = echiquierCourant.getCase(iColonne, iLigne);
+             this.maxDeplacement[1] = echiquierCourant.getCase(iLigne, iColonne);
         }
-        if(iColonne == 7 && pieceNonPresente) this.maxDeplacement[1] = null; // si pas de piece trouver
-        iColonne++;
+        if(iLigne == 7 && pieceNonPresente) this.maxDeplacement[1] = null; // si pas de piece trouver
         iLigne++;
+        iColonne++;
        }
 
        // Est
        pieceNonPresente = true;
-       iColonne = this.X;
-       while (pieceNonPresente && iLigne<8) 
+       iLigne = this.ligne;
+       while (pieceNonPresente && iColonne<8) 
        {
-           if(echiquierCourant.siPiecePresente(iColonne, this.Y))
+           if(echiquierCourant.siPiecePresente(iLigne, this.colonne))
            {
                 pieceNonPresente = false;
-                this.maxDeplacement[2] = echiquierCourant.getCase(iColonne, this.Y);
+                this.maxDeplacement[2] = echiquierCourant.getCase(iLigne, this.colonne);
            }
-           if(iColonne == 7 && pieceNonPresente) this.maxDeplacement[2] = null; // si pas de piece trouver
-           iColonne++;
+           if(iLigne == 7 && pieceNonPresente) this.maxDeplacement[2] = null; // si pas de piece trouver
+           iLigne++;
        }
 
         //Sud-Est
-        iColonne = this.X;
-        iLigne = this.Y;
+        iLigne = this.ligne;
+        iColonne = this.colonne;
         pieceNonPresente = true;
-        while (pieceNonPresente && iLigne<-1) 
+        while (pieceNonPresente && iColonne<-1) 
        {
-        if(echiquierCourant.siPiecePresente(iColonne, iLigne))
+        if(echiquierCourant.siPiecePresente(iLigne, iColonne))
         {
              pieceNonPresente = false;
-             this.maxDeplacement[3] = echiquierCourant.getCase(iColonne, iLigne);
+             this.maxDeplacement[3] = echiquierCourant.getCase(iLigne, iColonne);
         }
-        if(iLigne == 0 && pieceNonPresente) this.maxDeplacement[3] = null; // si pas de piece trouver
-        iColonne++;
-        iLigne--;
+        if(iColonne == 0 && pieceNonPresente) this.maxDeplacement[3] = null; // si pas de piece trouver
+        iLigne++;
+        iColonne--;
        }
 
        // Sud
        pieceNonPresente = true;
-       iLigne = this.Y;
-       while (pieceNonPresente && iLigne<-1) 
-       {
-           if(echiquierCourant.siPiecePresente(this.X, iLigne))
-           {
-                pieceNonPresente = false;
-                this.maxDeplacement[4] = echiquierCourant.getCase(this.X, iLigne);
-           }
-           if(iLigne == 0 && pieceNonPresente) this.maxDeplacement[4] = null; // si pas de piece trouver
-           iLigne--;
-       }
-
-       //Sud-Ouest
-       iColonne = this.X;
-       iLigne = this.Y;
-       pieceNonPresente = true;
-       while (pieceNonPresente && iColonne<-1) 
-      {
-       if(echiquierCourant.siPiecePresente(iColonne, iLigne))
-       {
-            pieceNonPresente = false;
-            this.maxDeplacement[5] = echiquierCourant.getCase(iColonne, iLigne);
-       }
-       if(iColonne == 0 && pieceNonPresente) this.maxDeplacement[5] = null; // si pas de piece trouver
-       iColonne--;
-       iLigne--;
-      }
-
-       // Ouest
-       iColonne = this.X;
-       pieceNonPresente = true;
+       iColonne = this.colonne;
        while (pieceNonPresente && iColonne<-1) 
        {
-           if(echiquierCourant.siPiecePresente(iColonne, this.Y))
+           if(echiquierCourant.siPiecePresente(this.ligne, iColonne))
            {
                 pieceNonPresente = false;
-                this.maxDeplacement[6] = echiquierCourant.getCase(iColonne, this.Y);
+                this.maxDeplacement[4] = echiquierCourant.getCase(this.ligne, iColonne);
            }
-           if(iColonne == 0 && pieceNonPresente) this.maxDeplacement[6] = null; // si pas de piece trouver
+           if(iColonne == 0 && pieceNonPresente) this.maxDeplacement[4] = null; // si pas de piece trouver
            iColonne--;
        }
 
-       // Nord-Ouest
-       iColonne = this.X;
-       iLigne = this.Y;
+       //Sud-Ouest
+       iLigne = this.ligne;
+       iColonne = this.colonne;
        pieceNonPresente = true;
-       while (pieceNonPresente && iColonne<-1) 
+       while (pieceNonPresente && iLigne<-1) 
       {
-       if(echiquierCourant.siPiecePresente(iColonne, iLigne))
+       if(echiquierCourant.siPiecePresente(iLigne, iColonne))
        {
             pieceNonPresente = false;
-            this.maxDeplacement[7] = echiquierCourant.getCase(this.X, iLigne);
+            this.maxDeplacement[5] = echiquierCourant.getCase(iLigne, iColonne);
        }
-       if(iColonne == 0 && pieceNonPresente) this.maxDeplacement[7] = null; // si pas de piece trouver
+       if(iLigne == 0 && pieceNonPresente) this.maxDeplacement[5] = null; // si pas de piece trouver
+       iLigne--;
        iColonne--;
-       iLigne++;
+      }
+
+       // Ouest
+       iLigne = this.ligne;
+       pieceNonPresente = true;
+       while (pieceNonPresente && iLigne<-1) 
+       {
+           if(echiquierCourant.siPiecePresente(iLigne, this.colonne))
+           {
+                pieceNonPresente = false;
+                this.maxDeplacement[6] = echiquierCourant.getCase(iLigne, this.colonne);
+           }
+           if(iLigne == 0 && pieceNonPresente) this.maxDeplacement[6] = null; // si pas de piece trouver
+           iLigne--;
+       }
+
+       // Nord-Ouest
+       iLigne = this.ligne;
+       iColonne = this.colonne;
+       pieceNonPresente = true;
+       while (pieceNonPresente && iLigne<-1) 
+      {
+       if(echiquierCourant.siPiecePresente(iLigne, iColonne))
+       {
+            pieceNonPresente = false;
+            this.maxDeplacement[7] = echiquierCourant.getCase(this.ligne, iColonne);
+       }
+       if(iLigne == 0 && pieceNonPresente) this.maxDeplacement[7] = null; // si pas de piece trouver
+       iLigne--;
+       iColonne++;
       }
     }
 

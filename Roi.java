@@ -1,22 +1,22 @@
 public class Roi extends Piece 
 {
     
-    public Roi(int x, int y, String couleur, Echiquier e)
+    public Roi(int ligne, int colonne, String couleur, Echiquier e)
     {
-        super(x,y,couleur,e);
+        super(ligne,colonne,couleur,e);
         if(couleur == "Blanc") forme = "\u2654";
         else forme = "\u265A";
     }
     
-    public void bouger(int x, int y) 
+    public void bouger(int ligne, int colonne) 
     {
-        if (verificationCoup(x,y))
+        if (verificationCoup(ligne,colonne))
         {
-            this.setPosition(this,x,y); // Si la vérification est correcte, le pion va bouger
+            this.setPosition(this,ligne,colonne); // Si la vérification est correcte, le pion va bouger
         }
     }
 
-    public boolean verificationCoup(int x, int y) 
+    public boolean verificationCoup(int ligne, int colonne) 
     {
         return true;
     }

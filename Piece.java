@@ -6,45 +6,45 @@ public class Piece
 
     protected Piece[] maxDeplacement;
 
-	protected int X;
+	protected int ligne;
 
-	protected int Y;
+	protected int colonne;
 
     protected Echiquier echiquierCourant;
 
-    public Piece(int x, int y, String couleur, Echiquier e) 
+    public Piece(int ligne, int colonne, String couleur, Echiquier e) 
     {
-        this.X = x;
-        this.Y = y;
+        this.ligne = ligne;
+        this.colonne = colonne;
         this.couleur = couleur;
         this.echiquierCourant = e;
 	}
 
-    public void setPosition(Piece p,int x, int y) 
+    public void setPosition(Piece p,int ligne, int colonne) 
     {
-        echiquierCourant.setCase(p,x,y);
-        setX(x);
-        setY(y);
+        echiquierCourant.setCase(p,ligne,colonne);
+        setligne(ligne);
+        setcolonne(colonne);
     }
 
-    public int getX() {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        return this.X;
+    public int getligne() {
+        // Automaticallcolonne generated method. Please delete this comment before entering specific code.
+        return this.ligne;
     }
 
-    public void setX(int value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.X = value;
+    public void setligne(int value) {
+        // Automaticallcolonne generated method. Please delete this comment before entering specific code.
+        this.ligne = value;
     }
 
-    public int getY() {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        return this.Y;
+    public int getcolonne() {
+        // Automaticallcolonne generated method. Please delete this comment before entering specific code.
+        return this.colonne;
     }
 
-    public void setY(int value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.Y = value;
+    public void setcolonne(int value) {
+        // Automaticallcolonne generated method. Please delete this comment before entering specific code.
+        this.colonne = value;
     }
     public String getCouleur()
     {

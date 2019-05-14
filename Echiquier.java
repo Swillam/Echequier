@@ -7,28 +7,28 @@ public class Echiquier
 
     public Echiquier()
     {
-        int x = 0;
-        int y = 0;
+        int ligne = 0;
+        int colonne = 0;
         String couleur = "Blanc";
         for (int i = 0; i < 2; i++) 
         {
             //tour, cavalier, fou, roi, reine, fou, cavalier, tour
-            casePieces[x][y] = new Tour(x, y, couleur, this);
-            casePieces[x+2][y] = new Fou(x+2, y, couleur, this);
-            casePieces[x+3][y] = new Roi(x+3, y, couleur, this);
-            casePieces[x+4][y] = new Reine(x+4, y, couleur, this);
-            casePieces[x+5][y] = new Fou(x+5, y, couleur, this);
-            casePieces[x+6][y] = new Cavalier(x+6, y, couleur, this);
-            casePieces[x+7][y] = new Tour(x+7, y, couleur, this);
-            y++;
-            if (i == 1) y--; // pour les noir
+            casePieces[ligne][colonne] = new Tour(ligne, colonne, couleur, this);
+            casePieces[ligne+2][colonne] = new Fou(ligne+2, colonne, couleur, this);
+            casePieces[ligne+3][colonne] = new Roi(ligne+3, colonne, couleur, this);
+            casePieces[ligne+4][colonne] = new Reine(ligne+4, colonne, couleur, this);
+            casePieces[ligne+5][colonne] = new Fou(ligne+5, colonne, couleur, this);
+            casePieces[ligne+6][colonne] = new Cavalier(ligne+6, colonne, couleur, this);
+            casePieces[ligne+7][colonne] = new Tour(ligne+7, colonne, couleur, this);
+            colonne++;
+            if (i == 1) colonne--; // pour les noir
             //rangée de pion
             for (int i1 = 0; i < 7; i++) 
             {
-                casePieces[i1][y] = new Pion(i, y, couleur, this);
+                casePieces[i1][colonne] = new Pion(i, colonne, couleur, this);
             }
             couleur = "Noir";
-            y = 7;
+            colonne = 7;
             }
 
     }
@@ -41,13 +41,13 @@ public class Echiquier
     
     public void siPromotionPion() 
     {
-        int x = 0;
-        while (x<8)
+        int ligne = 0;
+        while (ligne<8)
         {
-            int y = 0;
-            while (y<8) 
+            int colonne = 0;
+            while (colonne<8) 
             {
-                Piece p = getCase(x, y);
+                Piece p = getCase(ligne, colonne);
                 if(p instanceof Pion)
                 {
                     Pion pion = (Pion)p;
@@ -56,26 +56,26 @@ public class Echiquier
                         // choix pour la promotion
                     }
                 }
-                y++;
+                colonne++;
             }  
-            x++;
+            ligne++;
         }
     }
 
-    public Piece getCase(int x, int y) {
+    public Piece getCase(int ligne, int colonne) {
         // Automatically generated method. Please delete this comment before entering specific code.
-        return this.casePieces[x][y];
+        return this.casePieces[ligne][colonne];
     }
 
-    public void setCase(Piece p, int x, int y) 
+    public void setPosition(Piece p, int ligne, int colonne) 
     {
-        if(siPiecePresente(x, y)) manger(p, this.casePieces[x][y]);
-        this.casePieces[x][y] = p;
+        if(siPiecePresente(ligne, colonne)) manger(p, this.casePieces[ligne][colonne]);
+        this.casePieces[ligne][colonne] = p;
     }
 
-    public boolean siPiecePresente(int x, int y) 
+    public boolean siPiecePresente(int ligne, int colonne) 
     {
-        return this.casePieces[x][y] != null ;
+        return this.casePieces[ligne][colonne] != null ;
     }
 
     /**
