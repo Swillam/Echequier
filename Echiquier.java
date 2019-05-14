@@ -20,17 +20,16 @@ public class Echiquier
             casePieces[ligne][5] = new Fou(ligne, 5, couleur, this);
             casePieces[ligne][6] = new Cavalier(ligne, 6, couleur, this);
             casePieces[ligne][7] = new Tour(ligne, 7, couleur, this);
-            ligne--;
             if (i == 1) ligne++; // pour les blancs
+            else ligne--;
             //rangée de pion
-            for (int i1 = 0; i < 7; i++) 
+            for (int i1 = 0; i1 < 8; i1++) 
             {
                 casePieces[ligne][i1] = new Pion(ligne, i1, couleur, this);
             }
             couleur = "Blanc";
             ligne = 0;
-            }
-
+        }
     }
 
     public void manger(Piece pJouer,Piece pManger) 
@@ -92,4 +91,20 @@ public class Echiquier
         return pieceManger;
     }
 
+    public String affichage()
+    {
+        String ligne = "\n---------------------------------\n";
+        String echiquier = ligne;
+        for (int x = 0; x < 8; x++) 
+        {
+            echiquier += "| ";
+            for (int y = 0; y < 8; y++) 
+            {
+                if(siPiecePresente(x, y)) echiquier += casePieces[x][y] + " | ";
+                else echiquier += "  | ";
+            }
+            echiquier+= ligne;
+        }
+        return echiquier;
+    }
 }
