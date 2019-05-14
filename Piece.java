@@ -22,7 +22,7 @@ public class Piece
 
     public void setPosition(Piece p,int ligne, int colonne) 
     {
-        echiquierCourant.setCase(p,ligne,colonne);
+        echiquierCourant.setPosition(p,ligne,colonne);
         setligne(ligne);
         setcolonne(colonne);
     }

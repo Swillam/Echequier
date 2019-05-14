@@ -7,28 +7,28 @@ public class Echiquier
 
     public Echiquier()
     {
-        int ligne = 0;
-        int colonne = 0;
-        String couleur = "Blanc";
+        int ligne = 7;
+        String couleur = "Noir";
         for (int i = 0; i < 2; i++) 
         {
             //tour, cavalier, fou, roi, reine, fou, cavalier, tour
-            casePieces[ligne][colonne] = new Tour(ligne, colonne, couleur, this);
-            casePieces[ligne+2][colonne] = new Fou(ligne+2, colonne, couleur, this);
-            casePieces[ligne+3][colonne] = new Roi(ligne+3, colonne, couleur, this);
-            casePieces[ligne+4][colonne] = new Reine(ligne+4, colonne, couleur, this);
-            casePieces[ligne+5][colonne] = new Fou(ligne+5, colonne, couleur, this);
-            casePieces[ligne+6][colonne] = new Cavalier(ligne+6, colonne, couleur, this);
-            casePieces[ligne+7][colonne] = new Tour(ligne+7, colonne, couleur, this);
-            colonne++;
-            if (i == 1) colonne--; // pour les noir
+            casePieces[ligne][0] = new Tour(ligne, 0, couleur, this);
+            casePieces[ligne][1] = new Cavalier(ligne, 1, couleur, this);
+            casePieces[ligne][2] = new Fou(ligne, 2, couleur, this);
+            casePieces[ligne][3] = new Roi(ligne, 3, couleur, this);
+            casePieces[ligne][4] = new Reine(ligne, 4, couleur, this);
+            casePieces[ligne][5] = new Fou(ligne, 5, couleur, this);
+            casePieces[ligne][6] = new Cavalier(ligne, 6, couleur, this);
+            casePieces[ligne][7] = new Tour(ligne, 7, couleur, this);
+            ligne--;
+            if (i == 1) ligne++; // pour les blancs
             //rangée de pion
             for (int i1 = 0; i < 7; i++) 
             {
-                casePieces[i1][colonne] = new Pion(i, colonne, couleur, this);
+                casePieces[ligne][i1] = new Pion(ligne, i1, couleur, this);
             }
-            couleur = "Noir";
-            colonne = 7;
+            couleur = "Blanc";
+            ligne = 0;
             }
 
     }
