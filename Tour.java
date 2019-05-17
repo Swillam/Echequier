@@ -81,5 +81,15 @@ public class Tour extends Piece {
            iLigne--;
        }
     }
+    
+    public boolean verifTour(int ligne, int colonne) {
+
+        if (verifHorsMap() == false) return false;
+
+        if (verifColonne() || verifLigne() == true) return true;
+
+        else return false;
+
+  } //Fin methode
 
 }
