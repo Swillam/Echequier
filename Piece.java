@@ -59,11 +59,11 @@ public class Piece
     public boolean verifHorsMap (int ligne, int colonne) {
     	if ( ligne > 8 || colonne > 8 ) return false;
 
-    public boolean verifColonne() {
+    public boolean verifColonne(int colonne) {
     if (ligne == this.ligne) return true;
     }
 
-    public boolean verifLigne() {
+    public boolean verifLigne(int ligne) {
     if (colonne == this.colonne) return true;
     }
 
