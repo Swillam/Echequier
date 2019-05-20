@@ -55,5 +55,17 @@ public class Piece
     {
         return forme;
     }
+	
+    public boolean verifHorsMap (int ligne, int colonne) {
+    	if ( ligne > 8 || colonne > 8 || ligne < 0 || colonne < 0) return false;
+    }	
+	 
+    public boolean verifColonne(int colonne) {
+    if (ligne == this.ligne) return true;
+    }
+
+    public boolean verifLigne(int ligne) {
+    if (colonne == this.colonne) return true;
+    }
 
 }
