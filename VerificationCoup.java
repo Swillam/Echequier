@@ -59,5 +59,10 @@ public class VerificationCoup {
     if (colonne ==(this.colonne - 2) && ligne == (this.ligne + 1)) return true;
     if (colonne ==(this.colonne - 2) && ligne == (this.ligne - 1)) return true;
   }
+  
+  public boolean verificationFou(int ligne, int colonne) {
+        if (Math.abs(ligne) == Math.abs(colonne)) return true;
+        if (verifColonne() || verifLigne() == true) return true;
+    }
 
 }
