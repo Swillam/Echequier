@@ -1,5 +1,0 @@
-public boolean verificationCoup(int ligne, int colonne) //fou diago
-    {
-        return Math.abs(ligne) == Math.abs(colonne);
-
-    }
