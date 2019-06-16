@@ -11,7 +11,7 @@ public class Pion extends Piece
         else forme = "\u265F";
     }
 
-    public boolean bouger(int ligne, int colonne) 
+    public boolean bouger(int ligne, int colonne, String couleur) 
     {
         if (verificationCoup(ligne,colonne)) 
         {
@@ -22,6 +22,7 @@ public class Pion extends Piece
             {
                 echiquierCourant.promotion(this);
             }
+            this.detectionRoi(couleur);
             return true;
         }
        
@@ -61,7 +62,7 @@ public class Pion extends Piece
         return etat;
     }
 
-    public boolean detectionRoi() 
+    public boolean detectionRoi(String couleur)  
     {
         boolean roiAdverseTrouver = false;
 
@@ -89,8 +90,13 @@ public class Pion extends Piece
         {
             if(echiquierCourant.siPiecePresente(mouvementNord,mouvementEst))
             {
-                    Piece p = echiquierCourant.getCase(mouvementNord,mouvementEst);
-                    if(p.siRoi())   roiAdverseTrouver = !(p.getCouleur().equals(echiquierCourant.getCouleur()));
+                Piece p = echiquierCourant.getCase(mouvementNord,mouvementEst);
+                if(p.siRoi()) 
+                {
+                    Roi r = (Roi)p;
+                    r.setEchec(!(r.getCouleur().equals(couleur)));
+                    return true;
+                }            
             }
         }
         // Nord-Ouest
@@ -99,7 +105,12 @@ public class Pion extends Piece
             if(echiquierCourant.siPiecePresente(mouvementNord,mouvementOuest))
             {
                 Piece p = echiquierCourant.getCase(mouvementNord,mouvementOuest);
-                if(p.siRoi())   roiAdverseTrouver = !(p.getCouleur().equals(echiquierCourant.getCouleur()));
+                if(p.siRoi()) 
+                {
+                    Roi r = (Roi)p;
+                    r.setEchec(!(r.getCouleur().equals(couleur)));
+                    return true;
+                }            
             }
         }
         return roiAdverseTrouver;

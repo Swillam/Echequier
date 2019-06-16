@@ -26,7 +26,7 @@ public class Tour extends Piece {
         return etat;
     }
 
-    public boolean detectionRoi()
+    public boolean detectionRoi(String couleur) 
     {
         boolean pieceNonTrouve = true;;
         int iLigne = this.ligne+1;
@@ -42,7 +42,8 @@ public class Tour extends Piece {
                 Piece p = echiquierCourant.getCase(iLigne, iColonne);
                 if(p.siRoi()) 
                 {
-                    p.setEchec(!(p.getCouleur().equals(echiquierCourant.getCouleur())));
+                    Roi r = (Roi)p;
+                    r.setEchec(!(r.getCouleur().equals(couleur)));
                     return true;
                 }
             }
@@ -54,15 +55,16 @@ public class Tour extends Piece {
         while (pieceNonTrouve && iColonne<8) 
         {
             if(echiquierCourant.getCase(this.ligne, iColonne) != null)
+            {
+                pieceNonTrouve =false;
+                Piece p = echiquierCourant.getCase(this.ligne, iColonne);
+                if(p.siRoi()) 
                 {
-                    pieceNonTrouve =false;
-                    Piece p = echiquierCourant.getCase(this.ligne, iColonne);
-                    if(p.siRoi()) 
-                    {
-                        p.setEchec(!(p.getCouleur().equals(echiquierCourant.getCouleur())));
-                        return true;
-                    }
+                    Roi r = (Roi)p;
+                    r.setEchec(!(r.getCouleur().equals(couleur)));
+                    return true;
                 }
+            }
                 iColonne++;
         }
 
@@ -77,9 +79,10 @@ public class Tour extends Piece {
             {
                 pieceNonTrouve =false;
                 Piece p = echiquierCourant.getCase(iLigne, iColonne);
-                if(p.siRoi())
+                if(p.siRoi())                               
                 {
-                    p.setEchec(!(p.getCouleur().equals(echiquierCourant.getCouleur())));
+                    Roi r = (Roi)p;
+                    r.setEchec(!(r.getCouleur().equals(couleur)));
                     return true;
                 }
             }
@@ -96,7 +99,8 @@ public class Tour extends Piece {
                 Piece p = echiquierCourant.getCase(this.ligne, iColonne);
                 if(p.siRoi())
                 {
-                    p.setEchec(!(p.getCouleur().equals(echiquierCourant.getCouleur())));
+                    Roi r = (Roi)p;
+                    r.setEchec(!(r.getCouleur().equals(couleur)));
                     return true;
                 }
             }

@@ -14,9 +14,9 @@ public class Systeme {
         System.out.println("Voulez-vous charger une partie ?");
         String reponse = s.nextLine().toUpperCase();
         if (reponse.equals("OUI") || reponse.equals("O")) charger();
-        else e = new Echiquier(1);
+        else e = new Echiquier();
     }
-    
+
     public void demandeJoueur() 
     {
         boolean positionNonValide = true;
@@ -47,48 +47,61 @@ public class Systeme {
         }
     }
 
-  public boolean bouger()
-  {
-      System.out.println(lignePieceABouger+"    "+colonnePieceABouger+" "+lignePiece+"  "+colonnePiece);
-       return e.bouger(lignePieceABouger,colonnePieceABouger,lignePiece,colonnePiece);
-  }
-
-  public void rafraichir()
-  {
-      System.out.println(e.affichage());
-  }
-
-  public void quitter() 
-  {
-    System.out.println("Voulez-vous sauvegarder votre partie ? (Quitter sans sauvegarder signifierai un abandon)");
-    String reponse = s.nextLine().toUpperCase();
-    if (reponse.equals("OUI") || reponse.equals("O")) sauver();
-    s.close();
-    System.exit(0);
-  }
-  public void sauver() 
-  {
-    try 
+    public String Pro()
     {
-        File fichier =  new File("echeq.ser") ;
-        ObjectOutputStream oos =  new ObjectOutputStream(new FileOutputStream(fichier)) ;
-        oos.writeObject(this.e);
-        oos.close();
+        String str = "";
+        while(str.isEmpty())
+        {
+            System.out.println("Pion à promouvoir, choisir entre R: \"Reine\", C: \"Cavalier\", T: \"Tour\", F: \"Fou\"" );
+            str = s.nextLine().toUpperCase();
+        }
+        return str;
     }
-    catch(Exception e)
-    {
-        System.err.println(e);
-    }
-  }
 
-  public void charger() 
-  {
+    public boolean bouger()
+    {
+        return e.bouger(lignePieceABouger,colonnePieceABouger,lignePiece,colonnePiece);
+    }
+
+    public void rafraichir()
+    {
+        System.out.println(e.affichage());
+    }
+
+    public void quitter() 
+    {
+        System.out.println("Voulez-vous sauvegarder votre partie ? (Quitter sans sauvegarder signifierai un abandon)");
+        String reponse = s.nextLine().toUpperCase();
+        if (reponse.equals("OUI") || reponse.equals("O")) sauver();
+        s.close();
+        System.out.println("Fin du programme...");
+        System.exit(0);
+    }
+    public void sauver() 
+    {
+        try 
+        {
+            File fichier =  new File("echeq.ser") ;
+            ObjectOutputStream oos =  new ObjectOutputStream(new FileOutputStream(fichier)) ;
+            oos.writeObject(this.e);
+            System.out.println("Sauvegarde partie...");
+            oos.close();
+        }
+        catch(Exception e)
+        {
+            System.err.println(e);
+        }
+    }
+
+    public void charger() 
+    {
     try 
     {
         File fichier =  new File("echeq.ser") ;
         ObjectInputStream ois =  new ObjectInputStream(new FileInputStream(fichier)) ;
         Echiquier m = (Echiquier)ois.readObject();
         this.e = m;
+        System.out.println("Chargement partie...");
         ois.close();
     } 
     catch (Exception e) 
@@ -96,19 +109,36 @@ public class Systeme {
         System.out.println("Sauvegarde non trouvé ou corrompu, création d'une nouvelle partie..");
         this.e = new Echiquier();
     }
-  }
-  private void couleur()
-  {
+    }
+    public void couleur()
+    {
     System.out.println("Au tour du joueur de pièces "+ e.getCouleur() + " de jouer");
-  }
+    }
 
-  public static void main(String[] args)
+    public boolean echec()
+    {
+        return e.getEnEchec();
+    }
+    /*public boolean mat()
+    {
+        return e.verifMAT();
+    }
+
+    public boolean pat()
+    {
+        return e.verifPAT();
+    }*/
+
+
+    public static void main(String[] args)
     {
         Systeme s = new Systeme();
         s.rafraichir();
         while(true)
         {
             s.couleur();
+            //if(s.echec()) s.mat();
+            //if(s.pat()) s.quitter();
             s.demandeJoueur();
             s.rafraichir();
         }

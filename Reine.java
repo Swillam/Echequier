@@ -19,16 +19,11 @@ public class Reine extends Piece
             int tour = Math.abs(this.ligne - ligne);
             etat = this.diagonal(ligne, colonne, tour);
         }
-        System.out.println(ligne);
-        System.out.println(this.ligne);
-        System.out.println(ligne == this.ligne);//&& verifHorsMap(ligne, colonne)&& !etat);
         if(ligne == this.ligne && verifHorsMap(ligne, colonne)&& !etat) 
         {
             int tour = Math.abs(this.colonne - colonne);
             etat = this.enLigne(ligne,colonne,tour); 
         }
-        System.out.println(!(etat));
-        System.out.println(colonne == this.colonne && verifHorsMap(ligne, colonne)&& !etat);
         if(colonne == this.colonne && verifHorsMap(ligne, colonne)&& !etat)  
         {
             int tour = Math.abs(this.ligne - ligne);
@@ -37,7 +32,7 @@ public class Reine extends Piece
         return etat;
     }
 
-    public boolean detectionRoi()
+    public boolean detectionRoi(String couleur) 
     {
         boolean pieceNonTrouve = true;
         int iLigne = this.ligne+1;
@@ -52,7 +47,8 @@ public class Reine extends Piece
                 Piece p = echiquierCourant.getCase(iLigne, this.colonne);
                 if(p.siRoi()) 
                 {
-                    p.setEchec(!(p.getCouleur().equals(echiquierCourant.getCouleur())));
+                    Roi r = (Roi)p;
+                    r.setEchec(!(r.getCouleur().equals(couleur)));
                     return true;
                 }
            }
@@ -68,10 +64,11 @@ public class Reine extends Piece
         if(echiquierCourant.siPiecePresente(iLigne, iColonne))
         {
             pieceNonTrouve =true;
-             Piece p = echiquierCourant.getCase(iLigne, iColonne);
-             if(p.siRoi()) 
+            Piece p = echiquierCourant.getCase(iLigne, iColonne);
+            if(p.siRoi()) 
                 {
-                    p.setEchec(!(p.getCouleur().equals(echiquierCourant.getCouleur())));
+                    Roi r = (Roi)p;
+                    r.setEchec(!(r.getCouleur().equals(couleur)));
                     return true;
                 }
             }
@@ -90,7 +87,8 @@ public class Reine extends Piece
                 Piece p = echiquierCourant.getCase(this.ligne, iColonne);
                 if(p.siRoi()) 
                 {
-                    p.setEchec(!(p.getCouleur().equals(echiquierCourant.getCouleur())));
+                    Roi r = (Roi)p;
+                    r.setEchec(!(r.getCouleur().equals(couleur)));
                     return true;
                 }
            }
@@ -109,7 +107,8 @@ public class Reine extends Piece
              Piece p = echiquierCourant.getCase(iLigne, iColonne);
              if(p.siRoi()) 
                 {
-                    p.setEchec(!(p.getCouleur().equals(echiquierCourant.getCouleur())));
+                    Roi r = (Roi)p;
+                    r.setEchec(!(r.getCouleur().equals(couleur)));
                     return true;
                 }
             }
@@ -128,7 +127,8 @@ public class Reine extends Piece
                 Piece p = echiquierCourant.getCase(iLigne, this.colonne);
                 if(p.siRoi()) 
                 {
-                    p.setEchec(!(p.getCouleur().equals(echiquierCourant.getCouleur())));
+                    Roi r = (Roi)p;
+                    r.setEchec(!(r.getCouleur().equals(couleur)));
                     return true;
                 }
            }
@@ -147,7 +147,8 @@ public class Reine extends Piece
             Piece p = echiquierCourant.getCase(iLigne, iColonne);
             if(p.siRoi()) 
             {
-                p.setEchec(!(p.getCouleur().equals(echiquierCourant.getCouleur())));
+                Roi r = (Roi)p;
+                r.setEchec(!(r.getCouleur().equals(couleur)));
                 return true;
             }
        }
@@ -166,7 +167,8 @@ public class Reine extends Piece
                 Piece p = echiquierCourant.getCase(this.ligne, iColonne);
                 if(p.siRoi()) 
                 {
-                    p.setEchec(!(p.getCouleur().equals(echiquierCourant.getCouleur())));
+                    Roi r = (Roi)p;
+                    r.setEchec(!(r.getCouleur().equals(couleur)));
                     return true;
                 }
            }
@@ -185,7 +187,8 @@ public class Reine extends Piece
             Piece p = echiquierCourant.getCase(iLigne, iColonne);
             if(p.siRoi()) 
             {
-                p.setEchec(!(p.getCouleur().equals(echiquierCourant.getCouleur())));
+                Roi r = (Roi)p;
+                r.setEchec(!(r.getCouleur().equals(couleur)));
                 return true;
             }
         }
