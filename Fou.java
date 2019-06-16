@@ -23,7 +23,7 @@ public class Fou extends Piece
         return etat;
     }
 
-    public boolean detectionRoi() 
+    public boolean detectionRoi(String couleur)  
     {
     
         boolean pieceNonTrouve = true;
@@ -40,7 +40,8 @@ public class Fou extends Piece
                 Piece p = echiquierCourant.getCase(iLigne, iColonne);
                 if(p.siRoi()) 
                 {
-                    p.setEchec(!(p.getCouleur().equals(echiquierCourant.getCouleur())));
+                    Roi r = (Roi)p;
+                    r.setEchec(!(r.getCouleur().equals(couleur)));
                     return true;
                 }
             }
@@ -60,7 +61,8 @@ public class Fou extends Piece
                 Piece p = echiquierCourant.getCase(iLigne, iColonne);
                 if(p.siRoi()) 
                 {
-                    p.setEchec(!(p.getCouleur().equals(echiquierCourant.getCouleur())));
+                    Roi r = (Roi)p;
+                    r.setEchec(!(r.getCouleur().equals(couleur)));
                     return true;
                 }
             }
@@ -81,7 +83,8 @@ public class Fou extends Piece
                 Piece p = echiquierCourant.getCase(iLigne, iColonne);
                 if(p.siRoi()) 
                 {
-                    p.setEchec(!(p.getCouleur().equals(echiquierCourant.getCouleur())));
+                    Roi r = (Roi)p;
+                    r.setEchec(!(r.getCouleur().equals(couleur)));
                     return true;
                 }
            }
@@ -101,7 +104,8 @@ public class Fou extends Piece
                 Piece p = echiquierCourant.getCase(iLigne, iColonne);
                 if(p.siRoi()) 
                 {
-                    p.setEchec(!(p.getCouleur().equals(echiquierCourant.getCouleur())));
+                    Roi r = (Roi)p;
+                    r.setEchec(!(r.getCouleur().equals(couleur)));
                     return true;
                 }
             }

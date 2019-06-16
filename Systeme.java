@@ -16,10 +16,12 @@ public class Systeme {
         if (reponse.equals("OUI") || reponse.equals("O")) charger();
         else e = new Echiquier();
     }
+    public Systeme(boolean b) {}
 
     public void demandeJoueur() 
     {
         boolean positionNonValide = true;
+        s = new Scanner(System.in);
         while(positionNonValide)
         {
             System.out.println("Quel est la position de la pièce à jouer ? (si vous voulez quitter écrivez \"q\")");
@@ -28,32 +30,38 @@ public class Systeme {
             {
                 char pc = str.charAt(0);
                 if (Character.toString(pc).equals("Q"))  quitter();
-                this.lignePieceABouger = Character.getNumericValue(str.charAt(1))-1;
-                this.colonnePieceABouger = pc-65;
-                if(e.siPiecePresente(lignePieceABouger, colonnePieceABouger) && e.verifCouleur(lignePieceABouger, colonnePieceABouger)) 
+                if(str.length()>1)
                 {
-                    System.out.println("Ou voulez-vous déplacer la pièce ?");
-                    String strd = s.nextLine().toUpperCase();
-                    if (!(strd.isEmpty()))
+                    this.lignePieceABouger = Character.getNumericValue(str.charAt(1))-1;
+                    this.colonnePieceABouger = pc-65;
+                    if(e.siPiecePresente(lignePieceABouger, colonnePieceABouger) && e.verifCouleur(lignePieceABouger, colonnePieceABouger)) 
                     {
-                        char pcd = strd.charAt(0);
-                        this.lignePiece = Character.getNumericValue(strd.charAt(1))-1;
-                        this.colonnePiece = pcd-65;
+                        System.out.println("Ou voulez-vous déplacer la pièce ?");
+                        String strd = s.nextLine().toUpperCase();
+                        if (!(strd.isEmpty())&& strd.length()>1)
+                        {
+                            char pcd = strd.charAt(0);
+                            this.lignePiece = Character.getNumericValue(strd.charAt(1))-1;
+                            this.colonnePiece = pcd-65;
+                        }
+                        if(lignePieceABouger==lignePiece && colonnePieceABouger==colonnePiece) System.out.println("Déplacement sur la même case \n");
+                        else {
+                            positionNonValide = !(bouger());
+                        }
                     }
-                    if(lignePieceABouger==lignePiece && colonnePieceABouger==colonnePiece) System.out.println("Déplacement sur la même case \n");
-                    else positionNonValide = !(bouger());
                 }
             }
         }
     }
 
-    public String Pro()
+    public static String Pro()
     {
         String str = "";
+        Scanner sc = new Scanner(System.in);
         while(str.isEmpty())
         {
             System.out.println("Pion à promouvoir, choisir entre R: \"Reine\", C: \"Cavalier\", T: \"Tour\", F: \"Fou\"" );
-            str = s.nextLine().toUpperCase();
+            str = sc.nextLine().toUpperCase();
         }
         return str;
     }
@@ -129,7 +137,6 @@ public class Systeme {
         return e.verifPAT();
     }*/
 
-
     public static void main(String[] args)
     {
         Systeme s = new Systeme();
@@ -143,4 +150,5 @@ public class Systeme {
             s.rafraichir();
         }
     }
+    
 }

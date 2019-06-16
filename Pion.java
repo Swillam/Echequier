@@ -91,7 +91,7 @@ public class Pion extends Piece
             if(echiquierCourant.siPiecePresente(mouvementNord,mouvementEst))
             {
                 Piece p = echiquierCourant.getCase(mouvementNord,mouvementEst);
-                if(p.siRoi()) 
+                if(p.siRoi()&& !(p.getCouleur().equals(this.couleur))) 
                 {
                     Roi r = (Roi)p;
                     r.setEchec(!(r.getCouleur().equals(couleur)));
@@ -105,7 +105,7 @@ public class Pion extends Piece
             if(echiquierCourant.siPiecePresente(mouvementNord,mouvementOuest))
             {
                 Piece p = echiquierCourant.getCase(mouvementNord,mouvementOuest);
-                if(p.siRoi()) 
+                if(p.siRoi()&& !(p.getCouleur().equals(this.couleur))) 
                 {
                     Roi r = (Roi)p;
                     r.setEchec(!(r.getCouleur().equals(couleur)));

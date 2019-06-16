@@ -17,32 +17,57 @@ public class Cavalier extends Piece
         if (echiquierCourant.siPiecePresente(ligne,colonne)) etat = verifCouleur(ligne,colonne);
         return etat;
     }
-    public boolean detectionRoi() 
+    public boolean detectionRoi(String couleur)  
     {
         boolean roiAdverseTrouver = false;
         
+        if(verifHorsMap(this.ligne+2, this.colonne+1))
         if(echiquierCourant.siPiecePresente(this.ligne+2, this.colonne+1))
         {
             Piece p = echiquierCourant.getCase(this.ligne+2, this.colonne+1);
-            if(p.siRoi())   roiAdverseTrouver = !(p.getCouleur().equals(echiquierCourant.getCouleur()));
+           if(p.siRoi()) 
+            {
+                Roi r = (Roi)p;
+                r.setEchec(!(r.getCouleur().equals(couleur)));
+                return true;
+            }
         }
 
+        if(verifHorsMap(this.ligne+2, this.colonne-1))
         if(echiquierCourant.siPiecePresente(this.ligne+2, this.colonne-1)) 
         {
             Piece p = echiquierCourant.getCase(this.ligne+2, this.colonne-1);
-            if(p.siRoi())   roiAdverseTrouver = !(p.getCouleur().equals(echiquierCourant.getCouleur()));
+           if(p.siRoi()) 
+            {
+                Roi r = (Roi)p;
+                r.setEchec(!(r.getCouleur().equals(couleur)));
+                return true;
+            }
         }
-
-        if(echiquierCourant.siPiecePresente(this.ligne-2, this.colonne+1)) 
+        if(verifHorsMap(this.ligne-2, this.colonne+1))
+        if( echiquierCourant.siPiecePresente(this.ligne-2, this.colonne+1)) 
         {
             Piece p = echiquierCourant.getCase(this.ligne-2, this.colonne+1);
-            if(p.siRoi())   roiAdverseTrouver = !(p.getCouleur().equals(echiquierCourant.getCouleur()));
+           if(p.siRoi()) 
+            {
+                Roi r = (Roi)p;
+                r.setEchec(!(r.getCouleur().equals(couleur)));
+                return true;
+            }
         }
 
+        if(verifHorsMap(this.ligne-2, this.colonne-1))
         if(echiquierCourant.siPiecePresente(this.ligne-2, this.colonne-1)) 
         {
-            Piece p = echiquierCourant.getCase(this.ligne-2, this.colonne-2);
-            if(p.siRoi())   roiAdverseTrouver = !(p.getCouleur().equals(echiquierCourant.getCouleur()));
+            Piece p = echiquierCourant.getCase(this.ligne-2, this.colonne-1);
+            if(p.siRoi()) 
+            {
+                Roi r = (Roi)p;
+                System.out.println(p);
+                System.out.println(r.getCouleur().equals(couleur));
+                r.setEchec(!(r.getCouleur().equals(couleur)));
+                return true;
+            }        
         }
         return roiAdverseTrouver;
 

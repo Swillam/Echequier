@@ -1,5 +1,4 @@
 import java.io.Serializable;
-import java.util.Scanner;
 
 public class Echiquier implements Serializable
 {
@@ -8,7 +7,7 @@ public class Echiquier implements Serializable
     private Piece pieceJouer;
     private Piece pieceManger;
     private String couleurAJouer;
-    Scanner s = new Scanner(System.in);
+    private Roi enEchec = null;
 
     public Echiquier()
     {
@@ -22,8 +21,8 @@ public class Echiquier implements Serializable
             casePieces[ligne][0] = new Tour(ligne, 0, couleur, this);
             casePieces[ligne][1] = new Cavalier(ligne, 1, couleur, this);
             casePieces[ligne][2] = new Fou(ligne, 2, couleur, this);
-            casePieces[ligne][3] = new Roi(ligne, 3, couleur, this);
-            casePieces[ligne][4] = new Reine(ligne, 4, couleur, this);
+            casePieces[ligne][3] = new Reine(ligne, 3, couleur, this);
+            casePieces[ligne][4] = new Roi(ligne, 4, couleur, this);
             casePieces[ligne][5] = new Fou(ligne, 5, couleur, this);
             casePieces[ligne][6] = new Cavalier(ligne, 6, couleur, this);
             casePieces[ligne][7] = new Tour(ligne, 7, couleur, this);
@@ -39,16 +38,6 @@ public class Echiquier implements Serializable
         }
     }
 
-    public Echiquier(int i)
-    {
-        casePieces = new Piece[8][8];
-        int ligne = 6;
-        String couleur = "Blanc";
-        couleurAJouer = "Blanc";
-        casePieces[ligne][1] = new Pion(ligne, 1, couleur, this);
-        casePieces[5][1] = new Reine(5, 1, "Noir", this);
-
-    }
     public void manger(Piece pJouer,Piece pManger) 
     {
         pieceJouer = pJouer;
@@ -57,13 +46,7 @@ public class Echiquier implements Serializable
     
     public void promotion(Pion p) 
     {
-        System.out.println(true);
-        String str = "";
-        while(str.isEmpty())
-        {
-            System.out.println("Pion à promouvoir, choisir entre R: \"Reine\", C: \"Cavalier\", T: \"Tour\", F: \"Fou\"" );
-            str = s.nextLine().toUpperCase();
-        }
+        String str = Systeme.Pro() ;
         if (str.equals("R")) 
         {
             setCase(new Reine(p.getligne(), p.getcolonne(), p.getCouleur(), this), p.getligne(), p.getcolonne());
@@ -92,14 +75,30 @@ public class Echiquier implements Serializable
 
     public boolean bouger(int ligne, int colonne, int nligne ,int ncolonne) 
     {
+        pieceJouer =null;
+        pieceManger = null;
+        enEchec =null;
         Piece p = getCase(ligne, colonne);
-        //if(siPiecePresente(nligne, ncolonne)) manger(p, this.casePieces[nligne][ncolonne]);
-        if(p.bouger(nligne, ncolonne))
+        pieceJouer = p;
+        if(siPiecePresente(nligne, ncolonne)) manger(p,this.casePieces[nligne][ncolonne]);
+        if(p.bouger(nligne, ncolonne,couleurAJouer))
         {
-            if (couleurAJouer.equals("Noir")) couleurAJouer = "Blanc";
-            else couleurAJouer = "Noir";
             setCase(null, ligne, colonne);
-            return true;
+            if(echec(1))
+            {
+                annuleMouv(ligne, colonne);
+                setCase(null, nligne, ncolonne);
+                System.out.println("Vous ne pouvez pas mettre votre roi en echec");
+                System.out.println(affichage());
+                return false;
+            }
+            else 
+            {
+                couleurAJouer = switchCouleur();
+                setCase(null, ligne, colonne);
+                if(enEchec != null)   System.out.println("Echec au roi");
+                return true;
+            }
         }
         
         else return false;
@@ -133,22 +132,57 @@ public class Echiquier implements Serializable
         return echiquier;
     }
 
-    public boolean echec()
+    public boolean echec(int i )
     {
-        
+        String couleur;
+        if (i==0) couleur = couleurAJouer;
+        else couleur = switchCouleur() ;
+        for (int ligne = 0; ligne < 8; ligne++) 
+        {
+            for (int colonne = 0; colonne < 8; colonne++) 
+            {
+                if(siPiecePresente(ligne, colonne))
+                {
+                    Piece p =casePieces[ligne][colonne];
+                    if(p.siRoi())
+                    {
+                        if(p.detectionRoi(couleur) && !(p.getCouleur().equals(couleur))) return true;
+                    }
+                }   
+            }
+        }
         return false;
     }
 
-    /**
-     * @return the pieceJouer
-     */
+    /*public boolean verifMAT()
+    {
+        return (verifPAT() && getEnEchec());
+    }
+
+    public boolean verifPAT()
+    {
+        Piece p = null;
+        for (int ligne = 0; ligne < 8; ligne++) 
+        {
+            for (int colonne = 0; colonne < 8; colonne++) 
+            {
+                if(siPiecePresente(ligne, colonne))
+                {
+                    p =casePieces[ligne][colonne];
+                    if(p.siRoi() & p.getCouleur().equals(couleurAJouer)) break;
+                }
+            }
+        }
+        Roi r = (Roi)p;
+        return !(r.deplacePos());
+    }*/
+
+
     public Piece getPieceJouer() {
         return pieceJouer;
     }
 
-    /**
-     * @return the pieceManger
-     */
+
     public Piece getPieceManger() {
         return pieceManger;
     }
@@ -173,6 +207,34 @@ public class Echiquier implements Serializable
     public String getCouleur()
     {
         return this.couleurAJouer;
+    }
+    public void setEnEchec(Roi b)
+    {
+        this.enEchec = b;
+    }
+
+    public void annuleMouv(int ligne, int colonne)
+    {
+        setCase(pieceJouer, ligne, colonne);
+        if(pieceManger!=null)setCase(pieceManger, pieceManger.getligne(), pieceManger.getcolonne());
+    }
+
+    public boolean getEnEchec()
+    {
+        return (this.enEchec!= null);
+    }
+
+    public String switchCouleur()
+    {
+        String couleur;
+        if (couleurAJouer.equals("Noir")) couleur = "Blanc";
+        else couleur = "Noir";
+        return couleur;
+    }
+
+    public void setPieceJouer(Piece p)
+    {
+        this.pieceJouer = p;
     }
 
 }

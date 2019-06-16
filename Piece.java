@@ -14,7 +14,6 @@ public abstract class Piece implements Serializable
     
     protected boolean etreRoi = false;
 
-    private boolean echec =false;
 
 
     protected Echiquier echiquierCourant;
@@ -154,7 +153,6 @@ public abstract class Piece implements Serializable
         switch (direction) 
         {
             case 0:
-                System.out.println("ch1");
                 while(i<=tour)
                 {
                     if(echiquierCourant.siPiecePresente(this.ligne+i, this.colonne)&& i!=tour) return false;
@@ -200,14 +198,14 @@ public abstract class Piece implements Serializable
         }
         return etat;
     }
-    public boolean bouger(int ligne, int colonne) 
+    public boolean bouger(int ligne, int colonne, String couleur) 
     {
-        System.out.println(ligne+ " "+ colonne);
         if (verificationCoup(ligne,colonne)) 
         {
             setligne(ligne);
             setcolonne(colonne);
             echiquierCourant.setCase(this, ligne, colonne); // Si la vérification est correcte, le pion va bouger
+            this.detectionRoi(couleur);
             return true;
         }
         else return false;
@@ -223,7 +221,7 @@ public abstract class Piece implements Serializable
         return !(echiquierCourant.getCase(ligne,colonne).getCouleur().equals(this.couleur));  
     }
 
-    public boolean detectionRoi()
+    public boolean detectionRoi(String couleurAJouer)
     {
         return false;
     }
@@ -231,14 +229,5 @@ public abstract class Piece implements Serializable
     public boolean siRoi()
     {
         return etreRoi;
-    }
-    public boolean getEchec()
-    {
-        return echec;
-    }
-
-    public void setEchec(boolean b)
-    {
-        echec = b;
     }
 }

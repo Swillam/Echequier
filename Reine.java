@@ -45,7 +45,7 @@ public class Reine extends Piece
            {
                pieceNonTrouve =false;
                 Piece p = echiquierCourant.getCase(iLigne, this.colonne);
-                if(p.siRoi()) 
+                if(p.siRoi()&& !(p.getCouleur().equals(this.couleur))) 
                 {
                     Roi r = (Roi)p;
                     r.setEchec(!(r.getCouleur().equals(couleur)));
@@ -65,7 +65,7 @@ public class Reine extends Piece
         {
             pieceNonTrouve =true;
             Piece p = echiquierCourant.getCase(iLigne, iColonne);
-            if(p.siRoi()) 
+            if(p.siRoi()&& !(p.getCouleur().equals(this.couleur))) 
                 {
                     Roi r = (Roi)p;
                     r.setEchec(!(r.getCouleur().equals(couleur)));
@@ -83,9 +83,9 @@ public class Reine extends Piece
        {
            if(echiquierCourant.siPiecePresente(this.ligne, iColonne))
            {
-               pieceNonTrouve =false;
+                pieceNonTrouve =false;
                 Piece p = echiquierCourant.getCase(this.ligne, iColonne);
-                if(p.siRoi()) 
+                if(p.siRoi()&& !(p.getCouleur().equals(this.couleur))) 
                 {
                     Roi r = (Roi)p;
                     r.setEchec(!(r.getCouleur().equals(couleur)));
@@ -105,7 +105,7 @@ public class Reine extends Piece
         {
             pieceNonTrouve =true;
              Piece p = echiquierCourant.getCase(iLigne, iColonne);
-             if(p.siRoi()) 
+             if(p.siRoi()&& !(p.getCouleur().equals(this.couleur))) 
                 {
                     Roi r = (Roi)p;
                     r.setEchec(!(r.getCouleur().equals(couleur)));
@@ -125,7 +125,7 @@ public class Reine extends Piece
            {
                pieceNonTrouve =false;
                 Piece p = echiquierCourant.getCase(iLigne, this.colonne);
-                if(p.siRoi()) 
+                if(p.siRoi()&& !(p.getCouleur().equals(this.couleur))) 
                 {
                     Roi r = (Roi)p;
                     r.setEchec(!(r.getCouleur().equals(couleur)));
@@ -145,7 +145,7 @@ public class Reine extends Piece
        {
            pieceNonTrouve =true;
             Piece p = echiquierCourant.getCase(iLigne, iColonne);
-            if(p.siRoi()) 
+            if(p.siRoi()&& !(p.getCouleur().equals(this.couleur))) 
             {
                 Roi r = (Roi)p;
                 r.setEchec(!(r.getCouleur().equals(couleur)));
@@ -165,7 +165,7 @@ public class Reine extends Piece
            {
                pieceNonTrouve =false;
                 Piece p = echiquierCourant.getCase(this.ligne, iColonne);
-                if(p.siRoi()) 
+                if(p.siRoi()&& !(p.getCouleur().equals(this.couleur))) 
                 {
                     Roi r = (Roi)p;
                     r.setEchec(!(r.getCouleur().equals(couleur)));
@@ -185,7 +185,7 @@ public class Reine extends Piece
        {
             pieceNonTrouve =true;
             Piece p = echiquierCourant.getCase(iLigne, iColonne);
-            if(p.siRoi()) 
+            if(p.siRoi()&& !(p.getCouleur().equals(this.couleur))) 
             {
                 Roi r = (Roi)p;
                 r.setEchec(!(r.getCouleur().equals(couleur)));

@@ -39,8 +39,8 @@ public class Tour extends Piece {
             if(echiquierCourant.getCase(iLigne, this.colonne) != null)
             {
                 pieceNonTrouve =false;
-                Piece p = echiquierCourant.getCase(iLigne, iColonne);
-                if(p.siRoi()) 
+                Piece p = echiquierCourant.getCase(iLigne, this.colonne);
+                if(p.siRoi()&& !(p.getCouleur().equals(this.couleur))) 
                 {
                     Roi r = (Roi)p;
                     r.setEchec(!(r.getCouleur().equals(couleur)));
@@ -58,7 +58,7 @@ public class Tour extends Piece {
             {
                 pieceNonTrouve =false;
                 Piece p = echiquierCourant.getCase(this.ligne, iColonne);
-                if(p.siRoi()) 
+                if(p.siRoi()&& !(p.getCouleur().equals(this.couleur))) 
                 {
                     Roi r = (Roi)p;
                     r.setEchec(!(r.getCouleur().equals(couleur)));
@@ -73,12 +73,13 @@ public class Tour extends Piece {
         pieceNonTrouve = true;
 
        // Sud
-       while (pieceNonTrouve && iLigne>=0) 
+
+       while (pieceNonTrouve && iLigne>0) 
        {
             if(echiquierCourant.getCase(iLigne, this.colonne) != null)
             {
                 pieceNonTrouve =false;
-                Piece p = echiquierCourant.getCase(iLigne, iColonne);
+                Piece p = echiquierCourant.getCase(iLigne, this.colonne);
                 if(p.siRoi())                               
                 {
                     Roi r = (Roi)p;
@@ -91,7 +92,7 @@ public class Tour extends Piece {
 
        // Ouest
        pieceNonTrouve = true;
-       while (pieceNonTrouve && iColonne>=0) 
+       while (pieceNonTrouve && iColonne>0) 
        {
            if(echiquierCourant.getCase(this.ligne, iColonne) != null)
             {
