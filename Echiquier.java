@@ -84,7 +84,7 @@ public class Echiquier implements Serializable
         if(p.bouger(nligne, ncolonne,couleurAJouer))
         {
             setCase(null, ligne, colonne);
-            if(echec(1))
+            if(echec(0))
             {
                 annuleMouv(ligne, colonne);
                 setCase(null, nligne, ncolonne);
@@ -144,9 +144,9 @@ public class Echiquier implements Serializable
                 if(siPiecePresente(ligne, colonne))
                 {
                     Piece p =casePieces[ligne][colonne];
-                    if(p.siRoi())
+                    if(!(p.getCouleur().equals(couleur)))
                     {
-                        if(p.detectionRoi(couleur) && !(p.getCouleur().equals(couleur))) return true;
+                        if(p.detectionRoi(couleur)) return true;
                     }
                 }   
             }

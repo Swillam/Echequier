@@ -25,7 +25,7 @@ public class Cavalier extends Piece
         if(echiquierCourant.siPiecePresente(this.ligne+2, this.colonne+1))
         {
             Piece p = echiquierCourant.getCase(this.ligne+2, this.colonne+1);
-           if(p.siRoi()) 
+           if(p.siRoi()&& !(p.getCouleur().equals(couleur))) 
             {
                 Roi r = (Roi)p;
                 r.setEchec(!(r.getCouleur().equals(couleur)));
@@ -37,7 +37,7 @@ public class Cavalier extends Piece
         if(echiquierCourant.siPiecePresente(this.ligne+2, this.colonne-1)) 
         {
             Piece p = echiquierCourant.getCase(this.ligne+2, this.colonne-1);
-           if(p.siRoi()) 
+           if(p.siRoi()&& !(p.getCouleur().equals(couleur))) 
             {
                 Roi r = (Roi)p;
                 r.setEchec(!(r.getCouleur().equals(couleur)));
@@ -48,7 +48,7 @@ public class Cavalier extends Piece
         if( echiquierCourant.siPiecePresente(this.ligne-2, this.colonne+1)) 
         {
             Piece p = echiquierCourant.getCase(this.ligne-2, this.colonne+1);
-           if(p.siRoi()) 
+           if(p.siRoi()&& !(p.getCouleur().equals(couleur))) 
             {
                 Roi r = (Roi)p;
                 r.setEchec(!(r.getCouleur().equals(couleur)));
@@ -60,7 +60,7 @@ public class Cavalier extends Piece
         if(echiquierCourant.siPiecePresente(this.ligne-2, this.colonne-1)) 
         {
             Piece p = echiquierCourant.getCase(this.ligne-2, this.colonne-1);
-            if(p.siRoi()) 
+            if(p.siRoi()&& !(p.getCouleur().equals(couleur))) 
             {
                 Roi r = (Roi)p;
                 System.out.println(p);

@@ -105,7 +105,7 @@ public class Systeme {
     {
     try 
     {
-        File fichier =  new File("echeq.ser") ;
+        File fichier =  new File("echeqAuR.ser") ;
         ObjectInputStream ois =  new ObjectInputStream(new FileInputStream(fichier)) ;
         Echiquier m = (Echiquier)ois.readObject();
         this.e = m;
