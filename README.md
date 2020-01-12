@@ -7,3 +7,6 @@ Ce projet n'a pas été qu'un projet de programmation : c'était un projet de pr
 ## Site web du sujet du projet :
  
  https://www-info.iutv.univ-paris13.fr/dokuwiki/doku.php?id=m2107:start-echecs
+
+
+## Attention déplacer les fichiers des dossiers pieces et sauvegarde et les mettre avec Echiquier et systeme
