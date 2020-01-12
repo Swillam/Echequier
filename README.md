@@ -2,6 +2,6 @@
 
 Auteur : Chorro Aurélie Modestine Shawn
  
-## Site web du projet :
+## Site web du sujet du projet :
  
  https://www-info.iutv.univ-paris13.fr/dokuwiki/doku.php?id=m2107:start-echecs
